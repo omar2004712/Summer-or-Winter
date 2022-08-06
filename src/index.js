@@ -29,8 +29,7 @@ class App extends React.Component {
     // runs as many times as the components updates
   }
 
-  // render function Required By React
-  render() {
+  renderContent() {
     const { lat, errorMessage } = this.state;
     if (errorMessage && !lat) {
       return <div>Error: {errorMessage}</div>;
@@ -39,6 +38,11 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
     return <Spinner message="Please accept location request..." />;
+  }
+
+  // render function Required By React
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
