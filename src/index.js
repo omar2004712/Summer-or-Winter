@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import SeasonDisplay from './SeasonDisplay';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { lat: null, errorMessage: '', date: null };
-  }
+  state = { lat: null, errorMessage: '' };
 
   componentDidMount() {
     // runs after the component rendered for the first time
@@ -29,7 +26,6 @@ class App extends React.Component {
   componentDidUpdate() {
     // runs after the component rerenders -update-
     // runs as many times as the components updates
-    console.log('My Component was just updated - it rerendered!');
   }
 
   // render function Required By React
@@ -39,7 +35,7 @@ class App extends React.Component {
       return <div>Error: {errorMessage}</div>;
     }
     if (!errorMessage && lat) {
-      return <div>Latitude: {lat}</div>;
+      return <SeasonDisplay lat={this.state.lat} />;
     }
     return <div>Loading...</div>;
   }
